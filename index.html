@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>량즈룽 그룹 | 공생형 식자재 공급망 서비스 플랫폼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--primary:#0B5D4F;--primary-dark:#083D35;--primary-light:#E8F5F0;--primary-mid:#0E7A66;
+--secondary:#1A4B8C;--secondary-light:#E8EFF8;
+--accent:#C76B2E;--accent-light:#FFF4EC;
+--gold:#B8942E;--gold-light:#FBF7EC;
+--text-primary:#1A1F25;--text-secondary:#4A5568;--text-muted:#718096;--text-light:#A0AEC0;
+--bg-body:#F7F5F0;--bg-white:#FFFFFF;--bg-cream:#FDFBF7;--bg-dark:#0F1A16;--bg-dark-card:#162420;
+--border:#E8E4DC;--border-light:#F0EDE6;
+--shadow-sm:0 1px 3px rgba(0,0,0,.04),0 1px 2px rgba(0,0,0,.06);
+--shadow-md:0 4px 12px rgba(0,0,0,.05),0 2px 6px rgba(0,0,0,.04);
+--shadow-lg:0 12px 40px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
+--radius-sm:8px;--radius-md:12px;--radius-lg:20px;--radius-xl:28px;
+--container:1200px;--gap:24px;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+html,body{overflow-x:hidden;max-width:100vw}
+body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--text-primary);background:var(--bg-body);line-height:1.7;font-size:16px}
+img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
+.container{width:min(var(--container),90vw);margin:0 auto}
+.fade-up,.fade-in,.slide-left,.slide-right{opacity:1!important;transform:none!important}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--primary);letter-spacing:-.02em;white-space:nowrap}
+.nav-logo .logo-icon{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:900}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{font-size:13px;font-weight:600;color:var(--text-secondary);padding:8px 14px;border-radius:99px;transition:all .2s;white-space:nowrap}
+.nav-links a:hover{background:var(--primary-light);color:var(--primary)}
+
+/* HERO */
+.hero{padding:48px 0 0}
+.hero-card{position:relative;border-radius:var(--radius-xl);overflow:hidden;background:linear-gradient(145deg,#0B5D4F 0%,#0E4A6E 50%,#1A4B8C 100%);color:#fff;min-height:560px;display:flex;flex-direction:column;justify-content:center}
+.hero-bg-pattern{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(circle at 20% 80%,#fff 1px,transparent 1px),radial-gradient(circle at 80% 20%,#fff 1px,transparent 1px),radial-gradient(circle at 50% 50%,#fff .5px,transparent .5px);background-size:60px 60px,80px 80px,40px 40px}
+.hero-glow{position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);pointer-events:none}
+.hero-glow-2{position:absolute;bottom:-150px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(184,148,46,.15),transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:56px 48px 48px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 16px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;backdrop-filter:blur(8px)}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#6EE7B7;box-shadow:0 0 8px #6EE7B7}
+.hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.3;margin-bottom:20px;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#6EE7B7,#93E8C0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.85);max-width:700px;margin-bottom:36px}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hero-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);padding:20px;backdrop-filter:blur(8px);transition:all .3s}
+.hero-stat:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.hero-stat-number{font-family:'Inter',sans-serif;font-size:22px;font-weight:800;color:#6EE7B7;margin-bottom:4px;display:block;line-height:1.3}
+.hero-stat-number .unit{font-size:13px;font-weight:600;opacity:.8}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,.7);line-height:1.4}
+
+/* SECTIONS */
+.section{padding:80px 0}.section--tight{padding:56px 0}
+.section--dark{background:var(--bg-dark);color:#fff}
+.section-header{margin-bottom:48px}
+.section-number{font-family:'Inter',sans-serif;font-size:13px;font-weight:800;color:var(--primary);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-number::after{content:'';height:1px;width:40px;background:var(--primary);opacity:.3}
+.section--dark .section-number{color:#6EE7B7}.section--dark .section-number::after{background:#6EE7B7}
+.section-title{font-family:'Noto Serif KR',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:1.35;letter-spacing:-.02em;margin-bottom:12px}
+.section-subtitle{font-size:16px;color:var(--text-secondary);max-width:700px;line-height:1.8}
+.section--dark .section-subtitle{color:rgba(255,255,255,.65)}
+
+/* VISUAL BREAK */
+.visual-break{position:relative;width:100%;height:400px;overflow:hidden;border-radius:var(--radius-lg);margin:16px 0}
+.visual-break-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.visual-break-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,26,22,.15) 0%,rgba(15,26,22,.7) 100%)}
+.visual-break-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;color:#fff}
+.visual-break-content h3{font-family:'Noto Serif KR',serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:900;margin-bottom:8px}
+.visual-break-content p{font-size:15px;color:rgba(255,255,255,.85);max-width:500px}
+.illust-warehouse{background-image:linear-gradient(135deg,rgba(12,55,49,.55),rgba(12,55,49,.25)),url('assets/section_images/hero-from-farm-to-table.jpg');background-position:center}
+.illust-expo{background-image:linear-gradient(135deg,rgba(8,34,66,.58),rgba(14,64,54,.22)),url('assets/section_images/expo-main.jpg');background-position:center}
+.illust-globe{background-image:linear-gradient(135deg,rgba(11,43,84,.62),rgba(10,69,61,.26)),url('assets/section_images/global-network.jpg');background-position:center}
+.illust-lotus{background-image:linear-gradient(135deg,rgba(7,45,37,.58),rgba(14,74,67,.22)),url('assets/section_images/lotus-industry.jpg');background-position:center}
+.illust-coldchain{background-image:linear-gradient(135deg,rgba(17,49,103,.58),rgba(8,56,50,.26)),url('assets/section_images/coldchain-logistics.jpg');background-position:center}
+.illust-esg{background-image:linear-gradient(135deg,rgba(9,44,39,.62),rgba(25,96,83,.26)),url('assets/section_images/esg-pandemic.jpg');background-position:center}
+
+/* CARDS */
+.card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-sm);transition:all .3s}
+.card:hover{box-shadow:var(--shadow-md)}
+.card--accent-top{border-top:3px solid var(--primary)}
+.card--highlight{background:linear-gradient(135deg,var(--primary-light),#F0FAF6);border-color:rgba(11,93,79,.12)}
+.card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;flex-shrink:0}
+.card-icon--green{background:var(--primary-light)}.card-icon--blue{background:var(--secondary-light)}.card-icon--gold{background:var(--gold-light)}
+.card h3{font-size:18px;font-weight:800;margin-bottom:10px;letter-spacing:-.01em}
+.card p{color:var(--text-secondary);font-size:15px;line-height:1.75}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+
+/* PROLOGUE */
+.prologue{padding:80px 0;background:var(--bg-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.prologue-grid{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start}
+.prologue-aside{position:sticky;top:100px}
+.prologue-avatar{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--primary-light),#D6EDE6);border-radius:var(--radius-lg);position:relative;overflow:hidden;margin-bottom:20px}
+.prologue-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.prologue-avatar-label{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;font-size:12px;color:#fff;font-weight:700;text-align:center;letter-spacing:.08em;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.6))}
+.prologue-name{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:900;margin-bottom:8px}
+.prologue-title-list{font-size:13px;color:var(--text-muted);line-height:1.8}
+.prologue-body{padding-top:8px}
+.prologue-body .label{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:var(--primary);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.prologue-body blockquote{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;line-height:1.6;color:var(--primary-dark);margin-bottom:28px;padding-left:24px;border-left:3px solid var(--primary)}
+.prologue-body .text{font-size:15px;color:var(--text-secondary);line-height:2}
+.prologue-body .text p{margin-bottom:16px}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:40px}
+.kpi-card{text-align:center;padding:28px 16px;background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius-md);transition:all .3s}
+.kpi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.kpi-number{font-family:'Inter',sans-serif;font-size:26px;font-weight:900;color:var(--primary);line-height:1.2;margin-bottom:2px}
+.kpi-unit{font-size:14px;font-weight:700;color:var(--primary)}
+.kpi-label{font-size:13px;color:var(--text-muted);margin-top:6px}
+.profile-quote{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;border-radius:var(--radius-lg);padding:32px 36px;font-size:16px;line-height:1.9;position:relative;overflow:hidden}
+.profile-quote::before{content:'"';position:absolute;top:-10px;left:20px;font-size:120px;font-family:'Noto Serif KR',serif;opacity:.1;line-height:1}
+
+/* TIMELINE */
+.timeline-compact{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.tl-card{padding:24px;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);border-left:4px solid var(--primary);transition:all .3s}
+.tl-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.tl-card--milestone{border-left-color:var(--accent);background:var(--accent-light)}
+.tl-card--global{border-left-color:var(--secondary)}
+.tl-year{font-family:'Inter',sans-serif;font-size:13px;font-weight:800;color:var(--primary);background:var(--primary-light);display:inline-block;padding:2px 10px;border-radius:99px;margin-bottom:8px}
+.tl-card--milestone .tl-year{background:#FFE8D6;color:var(--accent)}
+.tl-card h4{font-size:15px;font-weight:800;margin-bottom:4px}
+.tl-card p{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* MVV */
+.mvv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
+.mvv-card{text-align:center;padding:40px 28px;border-radius:var(--radius-lg);border:1px solid var(--border);background:var(--bg-white);transition:all .3s}
+.mvv-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.mvv-card:nth-child(1){border-top:4px solid var(--primary)}.mvv-card:nth-child(2){border-top:4px solid var(--secondary)}.mvv-card:nth-child(3){border-top:4px solid var(--gold)}
+.mvv-label{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
+.mvv-card:nth-child(1) .mvv-label{color:var(--primary)}.mvv-card:nth-child(2) .mvv-label{color:var(--secondary)}.mvv-card:nth-child(3) .mvv-label{color:var(--gold)}
+.mvv-text{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;line-height:1.7}
+
+/* FLOW MODEL */
+.flow-model{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:36px 0}
+.flow-step{text-align:center;padding:28px 16px;border-radius:var(--radius-md);position:relative;transition:all .3s}
+.flow-step:hover{transform:translateY(-4px)}
+.flow-step:nth-child(1){background:#E8F5F0;border:2px solid #B8E0D4}
+.flow-step:nth-child(2){background:#E8EFF8;border:2px solid #B8CCE0}
+.flow-step:nth-child(3){background:#FFF4EC;border:2px solid #E8D0B8}
+.flow-step:nth-child(4){background:#FBF7EC;border:2px solid #E0D4A8}
+.flow-step:nth-child(5){background:linear-gradient(135deg,#E8F5F0,#E8EFF8);border:2px solid var(--primary)}
+.flow-step-zh{font-family:'Noto Serif KR',serif;font-size:28px;font-weight:900;margin-bottom:4px}
+.flow-step:nth-child(1) .flow-step-zh{color:var(--primary)}
+.flow-step:nth-child(2) .flow-step-zh{color:var(--secondary)}
+.flow-step:nth-child(3) .flow-step-zh{color:var(--accent)}
+.flow-step:nth-child(4) .flow-step-zh{color:var(--gold)}
+.flow-step:nth-child(5) .flow-step-zh{color:var(--primary-dark)}
+.flow-step-ko{font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:2px}
+.flow-step-en{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.flow-step-desc{font-size:11px;color:var(--text-muted);margin-top:6px;line-height:1.4}
+.model-desc{background:var(--bg-cream);border-radius:var(--radius-md);padding:24px 28px;font-size:15px;color:var(--text-secondary);line-height:1.85;border-left:4px solid var(--primary)}
+
+/* CHAIN DIAGRAM */
+.chain-flow{display:flex;align-items:center;justify-content:center;gap:0;margin:32px 0;flex-wrap:wrap}
+.chain-node{text-align:center;padding:16px 20px;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);min-width:120px;transition:all .3s}
+.chain-node:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.chain-node-icon{font-size:24px;margin-bottom:6px}
+.chain-node-label{font-size:13px;font-weight:700;color:var(--text-primary)}
+.chain-node-sub{font-size:11px;color:var(--text-muted)}
+.chain-arrow{font-size:20px;color:var(--primary);padding:0 8px;flex-shrink:0}
+
+/* SERVICES */
+.services-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.service-mini{padding:24px;border-radius:var(--radius-md);background:var(--bg-white);border:1px solid var(--border);transition:all .3s}
+.service-mini:hover{border-color:var(--primary);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.service-mini-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px;background:var(--primary-light);color:var(--primary)}
+.service-mini h4{font-size:15px;font-weight:800;margin-bottom:6px}
+.service-mini p{font-size:13px;color:var(--text-muted);line-height:1.65}
+
+/* SERVICE DETAIL ACCORDION */
+.service-detail{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:16px}
+.service-detail-header{display:flex;align-items:center;gap:16px;padding:24px 32px;border-bottom:1px solid var(--border-light);background:var(--bg-cream);cursor:pointer;transition:background .2s;user-select:none}
+.service-detail-header:hover{background:var(--primary-light)}
+.service-detail-letter{width:40px;height:40px;border-radius:10px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:800;flex-shrink:0}
+.service-detail-title{font-size:17px;font-weight:800;color:var(--text-primary);flex:1}
+.service-detail-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;flex-shrink:0}
+.service-detail-toggle{width:28px;height:28px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:18px;transition:transform .3s;flex-shrink:0}
+.service-detail.open .service-detail-toggle{transform:rotate(45deg)}
+.service-detail-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.service-detail.open .service-detail-body{max-height:3000px}
+.sdb-inner{padding:28px 32px}
+.service-detail-body p{font-size:15px;color:var(--text-secondary);line-height:1.85;margin-bottom:16px}
+.feature-list{list-style:none;padding:0}
+.feature-list li{display:flex;gap:10px;padding:8px 0;font-size:14px;color:var(--text-secondary);line-height:1.65;border-bottom:1px solid var(--border-light)}
+.feature-list li:last-child{border-bottom:none}
+.feature-list li::before{content:'✓';color:var(--primary);font-weight:800;flex-shrink:0;width:18px}
+
+/* EXPO STATS */
+.expo-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.expo-stat{text-align:center;padding:16px;background:var(--primary-light);border-radius:var(--radius-sm)}
+.expo-stat-num{font-family:'Inter',sans-serif;font-size:22px;font-weight:900;color:var(--primary)}
+.expo-stat-label{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+/* PRODUCT CARDS */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:16px}
+.product-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);padding:18px;display:flex;gap:14px;align-items:flex-start;transition:all .3s}
+.product-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.product-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#FFF4EC,#FFE8D6);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.product-info h4{font-size:14px;font-weight:800;margin-bottom:2px}
+.product-info p{font-size:12px;color:var(--text-muted);line-height:1.5}
+.product-revenue{display:inline-block;margin-top:4px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-light);padding:2px 8px;border-radius:99px}
+
+/* GLOBAL OFFICES */
+.global-offices{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin:16px 0}
+.office-chip{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-weight:600;transition:all .2s}
+.office-chip:hover{border-color:var(--primary);background:var(--primary-light)}
+.office-dot{width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.office-chip.hq .office-dot{background:var(--accent)}
+
+/* STRATEGY */
+.strategy-card{border-radius:var(--radius-lg);padding:32px;height:100%}
+.strategy-card--short{background:var(--bg-dark-card);border:1px solid rgba(110,231,183,.15)}
+.strategy-card--mid{background:linear-gradient(135deg,#162A24,#1A2E3A);border:1px solid rgba(110,231,183,.1)}
+.strategy-card--long{background:linear-gradient(135deg,#1A2E3A,#1E2848);border:1px solid rgba(147,130,220,.15)}
+.strategy-period{font-family:'Inter',sans-serif;font-size:12px;font-weight:800;color:#6EE7B7;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.strategy-card h3{font-size:20px;font-weight:800;color:#fff;margin-bottom:20px}
+.strategy-list{list-style:none;padding:0}
+.strategy-list li{display:flex;gap:10px;padding:6px 0;font-size:14px;color:rgba(255,255,255,.75);line-height:1.6}
+.strategy-list li::before{content:'→';color:#6EE7B7;flex-shrink:0;font-weight:700}
+
+/* INNOVATION */
+.innovation-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.innov-stat{text-align:center;padding:24px 16px;background:var(--primary-light);border-radius:var(--radius-md)}
+.innov-stat-num{font-family:'Inter',sans-serif;font-size:32px;font-weight:900;color:var(--primary)}
+.innov-stat-unit{font-size:14px;font-weight:700;color:var(--primary)}
+.innov-stat-label{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+/* MEMBERSHIP */
+.membership-highlight{background:linear-gradient(135deg,var(--accent),#D4782F);color:#fff;border-radius:var(--radius-lg);padding:36px;margin-bottom:24px}
+.membership-highlight h3{color:#fff;font-size:20px;margin-bottom:10px}
+.membership-highlight p{color:rgba(255,255,255,.9);font-size:15px}
+.benefit-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);padding:5px 14px;border-radius:99px;font-size:13px;font-weight:700;margin:4px}
+
+/* ESG */
+.esg-stat{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:700;color:var(--primary);margin:3px 0}
+
+/* PARTNERS */
+.partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.partner-card{background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-sm)}
+.partner-card h3{font-size:17px;font-weight:800;margin-bottom:10px}
+.partner-card p{font-size:14px;color:var(--text-secondary);line-height:1.7}
+.partner-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.partner-chip{font-size:12px;font-weight:700;color:var(--primary-dark);background:var(--primary-light);padding:6px 10px;border-radius:99px;border:1px solid rgba(11,93,79,.12)}
+
+/* CONCLUSION */
+.conclusion{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:var(--radius-xl);padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+.conclusion::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(110,231,183,.15),transparent 60%)}
+.conclusion>*{position:relative;z-index:2}
+.conclusion-tagline{font-family:'Noto Serif KR',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin-bottom:20px;color:#6EE7B7}
+.conclusion p{font-size:16px;line-height:2;color:rgba(255,255,255,.85);max-width:800px;margin:0 auto 16px}
+.conclusion-values{display:flex;justify-content:center;gap:24px;margin:24px 0;flex-wrap:wrap}
+.conclusion-value{text-align:center}
+.conclusion-value-zh{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:900;color:#6EE7B7;display:block}
+.conclusion-value-ko{font-size:12px;color:rgba(255,255,255,.6)}
+
+/* INVITE CTA */
+.invite-cta{
+background:
+radial-gradient(1200px 500px at 8% 0%,rgba(255,132,150,.24),transparent 62%),
+radial-gradient(900px 460px at 100% 100%,rgba(26,44,106,.32),transparent 66%),
+linear-gradient(150deg,#D00E34 0%,#B70D2F 45%,#6E1239 100%);
+color:#fff;
+padding:74px 0 58px;
+margin-top:44px;
+}
+.invite-cta-inner{text-align:center}
+.invite-cta-title{font-family:'Noto Serif KR',serif;font-size:clamp(1.8rem,2.8vw,2.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.34;margin-bottom:14px}
+.invite-cta-desc{font-size:16px;line-height:1.8;max-width:780px;margin:0 auto 28px;color:rgba(255,255,255,.9)}
+.invite-cta-actions{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+.invite-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:260px;padding:14px 24px;border-radius:999px;font-size:17px;font-weight:700;line-height:1.2;text-decoration:none;transition:all .25s;border:none;cursor:pointer;font-family:inherit}
+.invite-btn-primary{background:#F5A623;color:#1A1F25;box-shadow:0 10px 30px rgba(245,166,35,.35)}
+.invite-btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(245,166,35,.42)}
+.invite-btn-outline{border:2px solid rgba(255,255,255,.45);color:#fff;background:rgba(255,255,255,.02)}
+.invite-btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.85)}
+.invite-cta-contact{display:flex;justify-content:center;align-items:center;gap:34px;flex-wrap:wrap}
+.invite-cta-contact a{font-size:16px;font-weight:500;color:rgba(255,255,255,.92);text-decoration:none}
+.invite-cta-contact a:hover{color:#fff;text-decoration:underline}
+
+/* FOOTER */
+.footer{padding:40px 0 60px;text-align:center}
+.footer p{font-size:13px;color:var(--text-muted);line-height:1.8}
+.footer-divider{width:40px;height:2px;background:var(--border);margin:0 auto 16px}
+
+/* UTILS */
+.divider{border:none;height:1px;background:var(--border);margin:0}
+.spacer-sm{height:24px}.spacer-md{height:48px}
+.zh{font-size:.85em;color:var(--text-muted);font-weight:400}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+.hero-stats{grid-template-columns:repeat(2,1fr)}.kpi-grid{grid-template-columns:repeat(3,1fr)}.services-overview{grid-template-columns:repeat(2,1fr)}.flow-model{grid-template-columns:repeat(3,1fr)}.innovation-stats{grid-template-columns:repeat(2,1fr)}.partner-grid{grid-template-columns:repeat(2,1fr)}.prologue-grid{grid-template-columns:1fr;gap:32px}.prologue-aside{position:static;display:flex;gap:24px;align-items:center}.prologue-avatar{width:120px;aspect-ratio:1;margin-bottom:0}.timeline-compact{grid-template-columns:repeat(2,1fr)}.expo-stats{grid-template-columns:repeat(2,1fr)}.chain-flow{gap:4px}.chain-node{min-width:90px;padding:12px}
+}
+@media(max-width:768px){
+.nav-links{display:none}.hero-content{padding:36px 24px}.hero h1{font-size:1.8rem}.hero-stats{grid-template-columns:1fr 1fr}.kpi-grid{grid-template-columns:1fr 1fr}.mvv-grid{grid-template-columns:1fr}.grid-2,.grid-3,.partner-grid{grid-template-columns:1fr}.services-overview{grid-template-columns:1fr}.flow-model{grid-template-columns:repeat(3,1fr)}.card{padding:24px}.sdb-inner{padding:20px 24px}.service-detail-header{padding:20px 24px}.section{padding:48px 0}.conclusion{padding:36px 24px}.innovation-stats{grid-template-columns:1fr 1fr}.prologue-aside{flex-direction:column;align-items:flex-start}.visual-break{height:280px}.timeline-compact{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr}.chain-flow{flex-direction:column}.chain-arrow{transform:rotate(90deg)}.expo-stats{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+.invite-cta{padding:64px 0 54px;margin-top:24px}
+.invite-cta-title{font-size:clamp(1.55rem,7vw,2.05rem);margin-bottom:12px}
+.invite-cta-desc{font-size:15px;margin-bottom:22px;line-height:1.75}
+.invite-cta-actions{gap:14px;margin-bottom:30px}
+.invite-btn{width:100%;min-width:0;font-size:16px;padding:12px 16px}
+.invite-cta-contact{gap:14px;flex-direction:column}
+.invite-cta-contact a{font-size:15px}
+}
+@media(max-width:480px){.hero-stats{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr}.flow-model{grid-template-columns:1fr}}
+</style>
+<script async src="https://tally.so/widgets/embed.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="container nav-inner">
+<a href="#top" class="nav-logo"><div class="logo-icon">良</div>량즈룽 그룹</a>
+<div class="nav-links">
+<a href="#overview">기업 개요</a>
+<a href="#history">발전 과정</a>
+<a href="#values">핵심 가치</a>
+<a href="#model">공급망 모델</a>
+<a href="#services">핵심 서비스</a>
+<a href="#products">대표 제품</a>
+<a href="#strategy">성장 전략</a>
+<a href="#partners">파트너</a>
+<a href="#esg">ESG</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<header class="container" id="top">
+<div class="hero">
+<div class="hero-card">
+<div class="hero-bg-pattern"></div>
+<div class="hero-glow"></div>
+<div class="hero-glow-2"></div>
+<div class="hero-content">
+  <div class="hero-badge">良之隆 Group · Company Profile 2025</div>
+  <h1>양심 · 양지 · 양행으로<br><em>세상의 식탁을 연결하는</em><br>공생형 식자재 공급망 플랫폼</h1>
+  <p class="hero-desc">
+    농가에서 식탁까지 — 전시(展) · 판매(销) · 배송(配) · 금융(金)을<br>
+    하나의 체계로 통합 운영하는 중국 대표 식자재 공급망 서비스 기업
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-number">25<span class="unit">년+</span></span>
+      <span class="hero-stat-label">2000년 창립 · 식자재 전문 기업</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-number">24<span class="unit">개 성</span> + 동남아</span>
+      <span class="hero-stat-label">중국 전역 및 글로벌 사업 네트워크</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-number">38<span class="unit">개</span> 자회사</span>
+      <span class="hero-stat-label">60+ 직영점 · 700+ 임직원</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-number">100만<span class="unit">+</span></span>
+      <span class="hero-stat-label">식자재 생태계 협력 고객</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</header>
+
+<!-- PROLOGUE -->
+<section class="prologue">
+<div class="container">
+<div class="prologue-grid fade-up">
+  <div class="prologue-aside">
+    <div class="prologue-avatar">
+      <img src="assets/section_images/founder-ceo.jpg" alt="량즈룽 그룹 창립자 주창량(朱长良) CEO" loading="lazy">
+      <div class="prologue-avatar-label">FOUNDER & CEO</div>
+    </div>
+    <div>
+      <div class="prologue-name">주창량 (朱长良)</div>
+      <div class="prologue-title-list">
+        량즈룽 그룹 창립자 · CEO<br>
+        중국 식자재 전자상거래 페스티벌 창립자<br>
+        우한시 장안구 제16기 정치협상회의 위원
+      </div>
+    </div>
+  </div>
+  <div class="prologue-body">
+    <div class="label">Prologue — 창립자 메시지</div>
+    <blockquote>
+      "우리가 걸어온 20여 년의 길은 곧 '양(良)의 길'이었습니다.<br>
+      초심을 지키고 사명을 실천해 온 여정의 증거이며,<br>
+      양심 · 양지 · 양행을 핵심 가치로 삼아 온 기업 철학의 실천입니다."
+    </blockquote>
+    <div class="text">
+      <p>우리는 고객 서비스의 가치를 끊임없이 높이며, '양지(良知)의 미식 공동체'를 구축하기 위해 노력하고 있습니다. '강한 농업, 강한 외식 산업(强农强餐)'이라는 비전을 향해 끊임없이 도전하고 있습니다.</p>
+      <p>국가의 '농업 진흥' 정책에 발맞춰, '농가에서 식탁까지(从田间到餐桌)' 이어지는 식자재 공급망 전반에서 보다 효율적인 서비스를 제공합니다. 지속적인 혁신을 통해 소비자의 식탁을 풍성하게 하고 농산물의 부가가치를 높여 왔습니다.</p>
+      <p>투명성과 신뢰는 량즈룽이 구축해 온 '공생형 식자재 공급망 서비스(共生食材供应链服务)'의 핵심 경쟁력입니다. '전시·판매·배송·금융(展销配金)' 통합 모델로 식자재 생산 기업과 외식 기업의 경쟁력을 강화하고, 지속 가능한 성장을 함께 지원합니다.</p>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 01. COMPANY OVERVIEW -->
+<section class="section" id="overview">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">01 — Company Profile</div>
+  <h2 class="section-title">기업 개요</h2>
+  <p class="section-subtitle">식자재 공장과 외식 기업을 연결하는 공생형 식자재 공급망 서비스 기업 <span class="zh">(共生食材供应链服务企业)</span></p>
+</div>
+
+<div class="kpi-grid fade-up">
+  <div class="kpi-card"><div class="kpi-number">38<span class="kpi-unit">개</span></div><div class="kpi-label">자회사</div></div>
+  <div class="kpi-card"><div class="kpi-number">700<span class="kpi-unit">+명</span></div><div class="kpi-label">임직원</div></div>
+  <div class="kpi-card"><div class="kpi-number">1만<span class="kpi-unit">+개</span></div><div class="kpi-label">협력 식자재 공장</div></div>
+  <div class="kpi-card"><div class="kpi-number">2만<span class="kpi-unit">+개</span></div><div class="kpi-label">외식 기업 고객</div></div>
+  <div class="kpi-card"><div class="kpi-number">100만<span class="kpi-unit">+명</span></div><div class="kpi-label">생태계 협력 고객</div></div>
+</div>
+
+<div class="profile-quote fade-up">
+  <strong>"좋은 식자재를 농가에서 식탁까지, 원스톱으로."</strong><br>
+  트렌드 메뉴 연구개발, 구매·유통 서비스, 전방 물류창고 운영, 마케팅 및 공급망 금융 서비스를 통합 제공합니다. 전국 중·대형 외식 기업을 대상으로 높은 가성비의 표준화 식자재와 공장에서 식탁까지 이어지는 통합 공급망 서비스를 제공하며, 외식 기업이 가장 신뢰하는 <strong>'미식 배달부(美食搬运工)'</strong>가 되는 것을 목표로 합니다.
+</div>
+</div>
+</section>
+
+<div class="container">
+<div class="visual-break fade-up">
+  <div class="visual-break-bg illust-warehouse"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>从田间到餐桌 — 농가에서 식탁까지</h3>
+    <p>전시 · 판매 · 물류 · 금융이 유기적으로 연결된 공생형 공급망 플랫폼</p>
+  </div>
+</div>
+</div>
+<hr class="divider">
+
+<!-- 02. HISTORY -->
+<section class="section" id="history">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">02 — Milestones</div>
+  <h2 class="section-title">25년의 발전 이정표</h2>
+</div>
+<div class="timeline-compact">
+  <div class="tl-card fade-up"><span class="tl-year">2000</span><h4>창립</h4><p>9월 8일, 코우코우커(口口可) 식품유한회사 설립</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2001</span><h4>량신상무 설립</h4><p>후베이량신상무유한회사 설립, 화중농업대학교 협력</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2002</span><h4>첫 직영 매장</h4><p>우한 량즈룽 화난점 개점</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2003</span><h4>전국 시장 진출</h4><p>상하이 량즈룽 출범, 냉동식품 전문점 전국 확장</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2006</span><h4>브랜드 성장</h4><p>샤오롱위(小龙鱼), 코우코우커(口口可) 등 업계 인정</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2009</span><h4>공급망관리회사</h4><p>우한 량중싱 공급망관리유한회사 설립</p></div>
+  <div class="tl-card tl-card--global fade-up"><span class="tl-year">2011</span><h4>글로벌 소싱 전략</h4><p>태국·베트남·에콰도르·미국 원산지 직접 발굴, 향새우·바사어 히트상품 육성</p></div>
+  <div class="tl-card tl-card--milestone fade-up"><span class="tl-year">2013</span><h4>제1회 식자재 전자상거래 페스티벌</h4><p>4월 18일, 중국 식자재 업계 대표 B2B 전시회 창설</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2014</span><h4>전자상거래 플랫폼</h4><p>'량즈룽 식재속달(食材速递)' 온라인 플랫폼 런칭</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2015</span><h4>사명 변경</h4><p>'량즈룽 마케팅관리회사' → '우한 량즈룽 식자재 주식회사'</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2017</span><h4>전략적 투자 유치</h4><p>신희망그룹 등 전략 투자자로부터 자본 유치</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2019–20</span><h4>디지털 전환 + 팬데믹 대응</h4><p>공생형 공급망 플랫폼 본격 구축, 금섬운·CRM 등 디지털 시스템 도입, 코로나19 방역 지원</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2021</span><h4>천점만품(千店万品)</h4><p>'천 개 매장, 만 가지 상품' 전략 본격 추진</p></div>
+  <div class="tl-card fade-up"><span class="tl-year">2022–23</span><h4>샹GO회(享GO会) 런칭</h4><p>통합 프로모션·충전 리워드·신제품 시식·라이브 방송 4대 회원 서비스</p></div>
+  <div class="tl-card tl-card--milestone fade-up"><span class="tl-year">2024</span><h4>그룹 체제 + 글로벌 진출</h4><p>후베이 특색 식자재 10만 톤 산업단지, '중자(中资) 글로벌 진출 | 인도네시아 심층 탐방' 개최</p></div>
+  <div class="tl-card tl-card--global fade-up"><span class="tl-year">2025</span><h4>34개국 네트워크</h4><p>제13회 전자상거래 페스티벌, 글로벌 산업 생태계 본격화</p></div>
+</div>
+</div>
+</section>
+<hr class="divider">
+
+<!-- 03. MVV -->
+<section class="section" id="values">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">03 — Mission · Vision · Values</div>
+  <h2 class="section-title">사명 · 비전 · 핵심 가치</h2>
+  <p class="section-subtitle">'良(량)'의 가치에서 출발하는 량즈룽 그룹의 기업 문화 <span class="zh">(三良文化)</span></p>
+</div>
+<div class="mvv-grid">
+  <div class="mvv-card fade-up">
+    <div class="mvv-label">Mission — 사명</div>
+    <div class="mvv-text">식자재 공급망 유통 효율을 높여<br><strong>강한 농업, 강한 외식 산업(强农强餐)</strong>이라는<br>중국의 꿈 실현에 기여</div>
+  </div>
+  <div class="mvv-card fade-up">
+    <div class="mvv-label">Vision — 비전</div>
+    <div class="mvv-text">삼량의 식자재로<br><strong>세상을 연결하다</strong><br><span style="font-size:14px;font-weight:400;color:var(--text-muted)">三良餐料链天下</span></div>
+  </div>
+  <div class="mvv-card fade-up">
+    <div class="mvv-label">Core Values — 핵심 가치</div>
+    <div class="mvv-text"><strong>양심(良心)</strong><br><strong>양지(良知)</strong><br><strong>양행(良行)</strong></div>
+  </div>
+</div>
+<div class="grid-2 fade-up" style="margin-top:24px">
+  <div class="card card--highlight">
+    <h3>4대 자신감</h3>
+    <p><strong>전략적 자신감</strong> — 애국, 혁신, 시대와 함께 발전<br><strong>발전 자신감</strong> — 근면, 집념, 끊임없는 도전<br><strong>브랜드 자신감</strong> — 성실, 인애, 공생 창조<br><strong>문화 자신감</strong> — 기업 사랑, 단결, 장기주의</p>
+  </div>
+  <div class="card">
+    <h3>삼량(三良) 실천 — 구애(九爱)</h3>
+    <p><strong>양심</strong> — 기업을 가정처럼, 규율을 지키고 말과 행동이 일치하며, 고객을 위해 헌신<br><strong>양지</strong> — 끊임없이 배우고 근면·성실하게, 목표를 향해 흔들림 없이 전진<br><strong>양행</strong> — 서로 협력하며 상호 성장, 파트너와 함께 상생의 가치를 창출</p>
+  </div>
+</div>
+</div>
+</section>
+<hr class="divider">
+
+<!-- 04. SUPPLY CHAIN MODEL -->
+<section class="section" id="model">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">04 — Supply Chain Model</div>
+  <h2 class="section-title">展销配金 — 공생형 공급망 서비스 모델</h2>
+  <p class="section-subtitle">상·하류 자원을 통합하여 '농가에서 식탁까지(从田间到餐桌)' 전 과정을 하나로 연결합니다.</p>
+</div>
+<div class="flow-model fade-up">
+  <div class="flow-step"><div class="flow-step-zh">展</div><div class="flow-step-ko">전시</div><div class="flow-step-en">Exhibition</div><div class="flow-step-desc">시장 마케팅 · 브랜드</div></div>
+  <div class="flow-step"><div class="flow-step-zh">销</div><div class="flow-step-ko">판매</div><div class="flow-step-en">Sales</div><div class="flow-step-desc">고객 서비스 · 유통</div></div>
+  <div class="flow-step"><div class="flow-step-zh">配</div><div class="flow-step-ko">배송</div><div class="flow-step-en">Logistics</div><div class="flow-step-desc">창고 물류 · 콜드체인</div></div>
+  <div class="flow-step"><div class="flow-step-zh">金</div><div class="flow-step-ko">금융</div><div class="flow-step-en">Finance</div><div class="flow-step-desc">자금 지원 · 결제 정산</div></div>
+  <div class="flow-step"><div class="flow-step-zh">共</div><div class="flow-step-ko">공동의 마음</div><div class="flow-step-en">共心 · Co-heart</div><div class="flow-step-desc">양지 미식 공동체</div></div>
+</div>
+
+<div class="chain-flow fade-up">
+  <div class="chain-node"><div class="chain-node-icon">🌾</div><div class="chain-node-label">종자·양식</div><div class="chain-node-sub">산지 품질 관리</div></div>
+  <div class="chain-arrow"><i class="fas fa-chevron-right"></i></div>
+  <div class="chain-node"><div class="chain-node-icon">🏭</div><div class="chain-node-label">식자재 공장</div><div class="chain-node-sub">R&D · 가공 · 생산</div></div>
+  <div class="chain-arrow"><i class="fas fa-chevron-right"></i></div>
+  <div class="chain-node" style="border-color:var(--primary);border-width:2px"><div class="chain-node-icon">🔗</div><div class="chain-node-label" style="color:var(--primary);font-weight:800">량즈룽</div><div class="chain-node-sub">展销配金 통합 서비스</div></div>
+  <div class="chain-arrow"><i class="fas fa-chevron-right"></i></div>
+  <div class="chain-node"><div class="chain-node-icon">🍽️</div><div class="chain-node-label">외식 기업</div><div class="chain-node-sub">레스토랑 · 호텔 · 급식</div></div>
+  <div class="chain-arrow"><i class="fas fa-chevron-right"></i></div>
+  <div class="chain-node"><div class="chain-node-icon">👨‍👩‍👧‍👦</div><div class="chain-node-label">소비자</div><div class="chain-node-sub">안심할 수 있는 식탁</div></div>
+</div>
+
+<div class="model-desc fade-up">
+  <strong>공동 전시(共展) · 공동 판매(共销) · 공동 물류(共配) · 공동 창고(共仓) · 공동 구매(共采)</strong>를 통해 협력 구조를 구축하고, 궁극적으로 <strong>'공심(共心)'</strong> — 신뢰와 가치로 연결된 양지 미식 발전 공동체를 만들어갑니다.
+</div>
+</div>
+</section>
+
+<div class="container" style="padding:24px 0">
+<div class="visual-break fade-up">
+  <div class="visual-break-bg illust-expo"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>중국 식자재 공급망 제1전시회 <span class="zh">(中国食材供应链第一展)</span></h3>
+    <p>2024년 현장 계약 100억 위안 돌파 · 4,735개 기업 참여</p>
+  </div>
+</div>
+</div>
+<hr class="divider">
+
+<!-- 05. EIGHT CORE SERVICES -->
+<section class="section" id="services">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">05 — Eight Core Services</div>
+  <h2 class="section-title">8대 핵심 서비스</h2>
+  <p class="section-subtitle">展销配金 모델 기반, 공급망 상·하류 전체를 아우르는 맞춤형 솔루션 <span class="zh">(让食材供应链更简单)</span></p>
+</div>
+
+<div class="services-overview">
+  <div class="service-mini fade-up"><div class="service-mini-icon"><i class="fas fa-building"></i></div><h4>① 식자재 산업 종합 서비스</h4><p>전시회 중심 B2B 자원 연결, 산업 생태계 조성</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:var(--accent-light);color:var(--accent)"><i class="fas fa-fire"></i></div><h4>② 국내 히트상품 서비스</h4><p>단품왕 식자재 공장(单品王食材工厂) 대상 7단계 육성</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:var(--secondary-light);color:var(--secondary)"><i class="fas fa-utensils"></i></div><h4>③ 외식 공급망 서비스</h4><p>구매·창고·라스트마일 배송 + 투명 정산 통합</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:var(--gold-light);color:var(--gold)"><i class="fas fa-globe"></i></div><h4>④ 국제 전시·금융 연계</h4><p>글로벌 소싱·수출 채널 · 해외 전시 확대</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:#F3E8FF;color:#7C3AED"><i class="fas fa-store"></i></div><h4>⑤ 소매 공급망 서비스</h4><p>온·오프라인 유통 통합 스마트 리테일</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:#ECFDF5;color:#059669"><i class="fas fa-seedling"></i></div><h4>⑥ 식자재 산업 생산·가공</h4><p>후베이 연근 재배 100만 무, 연간 가공 10만 톤+</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:#EFF6FF;color:#2563EB"><i class="fas fa-snowflake"></i></div><h4>⑦ 콜드체인 배송 서비스</h4><p>4PL 기반 디지털 물류, 효율 80%↑</p></div>
+  <div class="service-mini fade-up"><div class="service-mini-icon" style="background:#FEF3C7;color:#B45309"><i class="fas fa-coins"></i></div><h4>⑧ 공급망 금융 지원</h4><p>삼류합일(三流合一): 자금·정보·물류 통합</p></div>
+</div>
+
+<!-- ACCORDION DETAILS -->
+<div class="section-header fade-up" style="margin-bottom:24px"><div class="section-number">06 — Service Details</div><h2 class="section-title" style="font-size:1.4rem">핵심 서비스 상세</h2></div>
+
+<!-- A. Exhibition -->
+<div class="service-detail open fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter">展</div>
+  <div class="service-detail-title">전시 사업 — 중국 식자재 전자상거래 페스티벌 <span class="zh">(中国食材电商节)</span></div>
+  <span class="service-detail-badge" style="background:var(--primary-light);color:var(--primary)">핵심 사업</span>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>2008년 창립 이후 총 12회 성공적으로 개최. <strong>"세상에 찾기 어려운 식자재는 없다(让天下没有难找的食材)"</strong>는 서비스 철학으로, 중국 34개 성 및 지역의 주요 공급업체를 통합하여 정확한 비즈니스 매칭 서비스를 제공합니다.</p>
+  <div class="expo-stats">
+    <div class="expo-stat"><div class="expo-stat-num">30만㎡</div><div class="expo-stat-label">우한 전시 면적</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">5,000+</div><div class="expo-stat-label">참가 기업</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">10만+</div><div class="expo-stat-label">전시 제품(종)</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">100억+</div><div class="expo-stat-label">2024 현장 계약(위안)</div></div>
+  </div>
+  <ul class="feature-list">
+    <li>2017년 '중국 10대 브랜드 전시 프로젝트(年度中国十佳品牌展会)' 수상</li>
+    <li>2018년 후베이성 최초 국제전시연맹(UFI) 회원 인증</li>
+    <li>2019년 국제컨벤션협회(ICCA) 회원 가입</li>
+    <li>2024년 '중국 식자재 공급망 제1전시회(中国食材供应链第一展)' 전문 인증</li>
+    <li>전시 품목: 수산물, 육류·가금류, 해산물, 면류, 조미료, 농산물, 지역 특산품, 포장자재, 생산 기계·설비 — 전 산업 체인 포괄</li>
+    <li>전국 순회: 우한·광저우·정저우 + 인도네시아·베트남 등 국내외 다수 지역</li>
+    <li>국내 순회 지역: 징진지(京津冀), 산둥, 산시, 동북 3성, 충칭, 후베이, 후난, 장쑤, 안후이, 장시, 저장 등</li>
+    <li>2025 제13회 전시관 구성: 브랜드관 · 면/점관 · 수산관 · 육류관 · 국제관 · 지역미식관 · 호텔용품관 · 명셰프관 · 고추/향신료관 · 바이어관 · 전처리 가공/포장 설비관</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- B. Hit Products -->
+<div class="service-detail fade-up" id="products">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:var(--accent)">爆</div>
+  <div class="service-detail-title">국내 히트상품(爆品) 서비스</div>
+  <span class="service-detail-badge" style="background:var(--accent-light);color:var(--accent)">7단계</span>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>히트상품(爆品)은 시장에서 높은 인기를 얻는 제품을 집중 개발·육성하는 핵심 전략입니다. 량즈룽은 '단품왕 식자재 공장(单品王食材工厂)'과 협력하여 <strong>시장조사 → 제품개발 → 마케팅 → 공급망관리 → 고객서비스 → 브랜드 구축 → 혁신 업그레이드</strong>, 7단계 운영 체계로 시장에 맞는(适销对路) 히트 단품을 육성합니다.</p>
+  <div class="product-grid">
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>샤오롱위 태국 향새우</h4><p>'향새우' 콘셉트 창시, 2012년부터 태국산 수입</p><span class="product-revenue">연 매출 1억 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>동푸 새우살</h4><p>그룹 대표 상품</p><span class="product-revenue">연 매출 10억 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>궈리엔 익힘 새우</h4><p>량즈룽·국련 공동 개발, 수많은 모방에도 독보적</p><span class="product-revenue">연 매출 1억 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>샤오롱위 로씨 민물새우</h4><p>2021년 시장 선도 국산 민물새우</p><span class="product-revenue">연 매출 8,000만 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>샤오롱위 깐새우살</h4><p>2007년 출시, 높은 품질과 합리적 가격</p><span class="product-revenue">연간 7,000만 개+</span></div></div>
+    <div class="product-card"><div class="product-icon">🦐</div><div class="product-info"><h4>펑원 전복</h4><p>량즈룽·위안펑하이커 공동 개발</p><span class="product-revenue">예상 매출 5,000만 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🐟</div><div class="product-info"><h4>바이웨이 바사어 필레</h4><p>2010년부터 베트남산 수입</p><span class="product-revenue">연간 컨테이너 1,000대+</span></div></div>
+    <div class="product-card"><div class="product-icon">🌿</div><div class="product-info"><h4>코우코우커 연근 스틱</h4><p>세계 최초 개발, 자체 특허 기술</p><span class="product-revenue">연 매출 1,000만 위안+</span></div></div>
+    <div class="product-card"><div class="product-icon">🥔</div><div class="product-info"><h4>슈즈링 누룽지 감자</h4><p>해발 2,000m+ 윈난 고산지대 감자</p><span class="product-revenue">연 매출 1,000만 위안+</span></div></div>
+  </div>
+</div></div>
+</div>
+
+<!-- C. Catering -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:var(--secondary)">销</div>
+  <div class="service-detail-title">외식 공급망 통합 솔루션</div>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>식자재 공장과 협력해 계절별 메뉴 선정(四季选品), 제품 개발, 구매, 창고, 물류 배송 등 외식 기업의 핵심 운영 과제(痛点)를 중점 해결합니다. 전 과정의 <strong>공개성과 투명성</strong>을 통해 비용을 절감하고 효율을 높입니다.</p>
+  <ul class="feature-list">
+    <li>4,000개+ 핵심 생산 공장(核心采购工厂) · 400여 개 전략적 주요 공급사(头部战略供应商)</li>
+    <li>공급원: 전국 10여 개 성 + 해외, '고품질·높은 가성비·효율적 매칭' 실현</li>
+    <li>대량 식자재 구매 입찰(大宗食材采买招标) + 라스트마일 배송(最后一公里配送)</li>
+    <li>대형 고객 전담 서비스부(大客户服务部) — 수요·공급 데이터 기반 정밀 매칭, 농업-외식 직통(农餐直通)</li>
+    <li>메뉴 맞춤형 식자재 솔루션 · 투명 정산 프로세스 · 공급망 금융 솔루션</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- D. Global -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:var(--gold)">國</div>
+  <div class="service-detail-title">국제 전시·금융 연계 서비스</div>
+  <span class="service-detail-badge" style="background:var(--gold-light);color:var(--gold)">34개국</span>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p><strong>"세계 식자재의 중식화, 중식 미식의 세계화."</strong> 글로벌 식자재 자원의 구매·유통을 통합 관리하는 국제 플랫폼으로, 중국 외식·식자재 기업의 국제적 영향력과 경쟁력을 강화합니다.</p>
+  <p style="font-weight:700;color:var(--text-primary)">해외 지사 네트워크:</p>
+  <div class="global-offices">
+    <div class="office-chip hq"><div class="office-dot"></div>중국 본사</div>
+    <div class="office-chip"><div class="office-dot"></div>두바이</div>
+    <div class="office-chip"><div class="office-dot"></div>인도</div>
+    <div class="office-chip"><div class="office-dot"></div>태국</div>
+    <div class="office-chip"><div class="office-dot"></div>베트남</div>
+    <div class="office-chip"><div class="office-dot"></div>싱가포르</div>
+    <div class="office-chip"><div class="office-dot"></div>인도네시아</div>
+  </div>
+  <ul class="feature-list">
+    <li><strong>글로벌 새우 조달:</strong> 인도네시아·베트남·인도·태국·에콰도르 등 주요 생산국 중심</li>
+    <li><strong>해외 전시 확대:</strong> 베트남·인도네시아·두바이 등에서 식자재 전시회 개최</li>
+    <li><strong>글로벌 해산물 무역 페스티벌(全球海鲜贸易节):</strong> 세계 일류 해산물 무역 플랫폼</li>
+    <li><strong>글로벌 육류 산업 박람회(全球肉类产业博览会):</strong> "유주유육유붕우(有酒有肉有朋友)" — 전 산업 체인 연결</li>
+    <li><strong>중자 글로벌 진출(中资出海) · 인도네시아 심층 탐방(2024):</strong> 중국 기업가 100여 명 · 인도네시아 150개 기업 교류</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- E. Retail -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:#7C3AED">零</div>
+  <div class="service-detail-title">소매 공급망 서비스</div>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>최종 소비자와 소매(零售) 고객 수요를 중심으로, 제품 공급망 + 디지털 기술을 결합해 온·오프라인 유통을 통합하는 스마트 신소매(新零售) 공급망 시스템입니다.</p>
+  <ul class="feature-list">
+    <li><strong>오프라인:</strong> 체인형 대형마트(连锁超市), 전문 매장(连锁商店)</li>
+    <li><strong>온라인:</strong> 이커머스 플랫폼 (징둥, 샤오홍슈 등)</li>
+    <li><strong>외식 채널:</strong> 호텔, 레스토랑, 단체 급식, 외식 기업의 리테일 사업</li>
+    <li>첨단 냉동 기술·포장 시스템 → 품질 유지 및 이력 추적(可追溯性) 관리</li>
+    <li>판매 데이터·소비자 피드백 기반 지속 공급망 최적화</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- F. Production -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:#059669">産</div>
+  <div class="service-detail-title">식자재 산업 생산·가공 — 연근(藕) 사업</div>
+  <span class="service-detail-badge" style="background:#ECFDF5;color:#059669">세계 최초</span>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>후베이성에 자체 생산 기지를 구축하고, 후베이 대표 농산물인 연근을 중심으로 <strong>100만 무(百万亩)</strong> 규모의 재배 단지를 조성했습니다. R&D·원재료 조달·생산·판매(수출 포함)·물류까지 전 과정을 아우르는 연근 제품 종합 공급망 플랫폼입니다.</p>
+  <ul class="feature-list">
+    <li>전용 특허 절단 기술(专利切条技术) · 수작업 정선(人工精选) · 과학적 색상 유지(科学护色)</li>
+    <li><strong>연근 스틱(藕条)</strong>은 전 세계 최초 개발(全球首创), 전용 가공 설비 자체 특허</li>
+    <li>후베이성 유일의 냉동 연근 스틱 생산·공급 기업</li>
+    <li>대표 브랜드: "口口可(코우코우커)" · "挖藕(와오우)" — 전국 주요 성도 도시 판매</li>
+    <li>연간 가공 처리량 약 <strong>10만 톤+</strong>, 연간 생산액 약 <strong>16억 위안</strong></li>
+    <li>수출 자격 취득 완료 — 미국, 인도 등 해외 시장 확대 추진</li>
+    <li>총 3개 생산 라인으로 확대 계획</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- G. Cold Chain -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:#2563EB">配</div>
+  <div class="service-detail-title">콜드체인 배송 · 集速配(OWTE) 시스템</div>
+  <span class="service-detail-badge" style="background:#EFF6FF;color:#2563EB">효율 80%↑</span>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p>제4자(4PL) 식자재 공급망 배송 관리 플랫폼(第四方食材供应链交付管理平台)으로, 디지털 기술을 활용해 온·오프라인 유통을 유기적으로 연결하고, 고객 주문 처리부터 전국 콜드체인 배송까지 통합 운영합니다.</p>
+  <div class="expo-stats">
+    <div class="expo-stat"><div class="expo-stat-num">20개</div><div class="expo-stat-label">중심 물류센터(中心仓)</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">30+</div><div class="expo-stat-label">전방 물류창고(前置仓)</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">20만㎡+</div><div class="expo-stat-label">콜드체인 창고 면적</div></div>
+    <div class="expo-stat"><div class="expo-stat-num">80%↑</div><div class="expo-stat-label">물류 효율 향상</div></div>
+  </div>
+  <ul class="feature-list">
+    <li><strong>省급 간선 210개:</strong> 1,000km 이내 48시간 배송</li>
+    <li><strong>도시 라인 320개:</strong> 화중 권역 '현현통(县县通)' 36시간 도착</li>
+    <li><strong>集速配 OWTE:</strong> 창고관리(WMS) + 물류운영(TMS) + 주문관리(OMS) + 금융지원 통합</li>
+    <li>스마트 자동 배차 · 온도 모니터링 · Lot 관리 · AI 기반 디지털 운영</li>
+    <li>위챗 미니프로그램(PC+모바일): 입출고·재고·배송·정산 통합 관리</li>
+    <li>"하나의 프로그램으로 모든 관리를! (一个小程序，管理全搞定！)"</li>
+  </ul>
+</div></div>
+</div>
+
+<!-- H. Finance -->
+<div class="service-detail fade-up">
+<div class="service-detail-header" onclick="toggleService(this)">
+  <div class="service-detail-letter" style="background:#B45309">金</div>
+  <div class="service-detail-title">공급망 금융 지원 <span class="zh">(资金赋能)</span></div>
+  <div class="service-detail-toggle">+</div>
+</div>
+<div class="service-detail-body"><div class="sdb-inner">
+  <p><strong>"스마트 네트워크로 세계를 연결하고, 자금으로 산업에 힘을 더하다(智慧链接全球，资金赋能产业)."</strong> 금융 서비스를 통해 공급망 각 단계를 유기적으로 연결하고, 자금흐름·정보흐름·물류흐름의 <strong>삼류합일(三流合一)</strong>을 실현합니다. 국내와 해외를 연결하는 '국내+국경 간(境内+跨境)' 이중 순환 서비스 네트워크를 구축합니다.</p>
+  <ul class="feature-list">
+    <li><strong>결제·정산:</strong> 집합 결제, 금융 결제, 외환 리스크 관리, 환율 고정 서비스</li>
+    <li><strong>공급망 금융:</strong> 매출채권·주문·창고증권 담보·선급금 금융, 국경 간 금융(신용장·수출 환급세)</li>
+    <li><strong>데이터 기반:</strong> 디지털 리스크 관리(数字化风控), 신용평가, 동적 한도, 리스크 조기 경보</li>
+    <li><strong>시나리오 금융:</strong> 냉장·냉동 물류 보험, 설비 임대, 분할 결제, 유통업체 신용 대출, 국경 간 무역 신용 보험</li>
+    <li><strong>글로벌 금융:</strong> 국제 무역 금융, 국경 간 팩토링, 해외 창고증권 담보, 다중 통화 자금 풀 관리</li>
+  </ul>
+</div></div>
+</div>
+
+</div>
+</section>
+
+<div class="container" style="padding-bottom:24px">
+<div class="visual-break fade-up">
+  <div class="visual-break-bg illust-lotus"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>후베이 연근 재배단지 100만 무(百万亩)</h3>
+    <p>세계 최초 연근 스틱(藕条) · 연간 가공 10만 톤+ · 생산액 16억 위안 · 자체 특허 기술</p>
+  </div>
+</div>
+</div>
+<hr class="divider">
+
+<!-- 07. STRATEGY -->
+<section class="section section--dark" id="strategy">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">07 — Growth Strategy</div>
+  <h2 class="section-title" style="color:#fff">중장기 성장 전략 <span class="zh" style="color:rgba(255,255,255,.4)">(集团发展战略)</span></h2>
+</div>
+<div class="grid-3">
+  <div class="strategy-card strategy-card--short fade-up">
+    <div class="strategy-period">Short-term · 2년</div>
+    <h3>기반 강화</h3>
+    <ul class="strategy-list">
+      <li>유행메뉴 몰(流行菜商城) 및 '이지 식자재(易找食材)' 플랫폼 협업 효율 강화</li>
+      <li>상류 공장 및 주요 고객(大客户) 서비스 방향 견지</li>
+      <li>콜드체인 서비스 '저녁 주문·익일 아침 도착(夕单朝至)' 상시 운영</li>
+      <li>'전방 물류창고(前置仓)' 서비스 상시 운영 체계 구축</li>
+      <li>국내 34개 성·시 + 해외 34개국 시장 가속 확대</li>
+      <li>공급망 금융(资金服务) 지속 확장</li>
+    </ul>
+  </div>
+  <div class="strategy-card strategy-card--mid fade-up">
+    <div class="strategy-period">Mid-term · 3~5년</div>
+    <h3>규모화 · 수익 성장</h3>
+    <ul class="strategy-list">
+      <li>경영 주체 이익 연평균 <strong style="color:#6EE7B7">30%</strong> 성장</li>
+      <li>'샤핀다취안(虾品大全)' 새우 통합 플랫폼 연평균 30% 성장</li>
+      <li>콜드체인·연근 사업 연평균 <strong style="color:#6EE7B7">40%</strong> 성장</li>
+      <li>'전방 물류창고(前置仓)' 사업 주요 지역 규모화</li>
+      <li>'글로벌 해산물(새우) 무역 페스티벌' 영향력 확대</li>
+      <li>직원 1인당 생산성·보상 연평균 20% 성장</li>
+      <li>중국 최고 영향력의 샹차이(湘菜) 공급망 서비스 기업</li>
+      <li>'중국 식자재 단품왕 전략 클럽(单品王战略俱乐部)' 성과 가시화</li>
+      <li>'량즈룽' 브랜드 전면 업그레이드</li>
+    </ul>
+  </div>
+  <div class="strategy-card strategy-card--long fade-up">
+    <div class="strategy-period">Long-term · 10년 비전 (挑战目标)</div>
+    <h3>산업 리더십</h3>
+    <ul class="strategy-list">
+      <li>국내 조리 새우(熟虾) 시장 <strong style="color:#6EE7B7">1위</strong> 브랜드</li>
+      <li>글로벌 식자재 산업 <strong style="color:#6EE7B7">대표 전시회</strong> 구축</li>
+      <li>중국 유행메뉴 공급망 서비스 <strong style="color:#6EE7B7">1위</strong> 플랫폼</li>
+      <li>중국 전방 물류창고(前置仓) 배송 서비스 <strong style="color:#6EE7B7">최우선 선택</strong> 브랜드</li>
+      <li>해외 34개국 사업 확장, 해외 전시회 지속 개최</li>
+    </ul>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 08. BRAND & INNOVATION -->
+<section class="section">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">08 — Brand · Innovation · Digital</div>
+  <h2 class="section-title">브랜드 가치 · 디지털 혁신</h2>
+</div>
+<div class="grid-2">
+  <div class="card card--accent-top fade-up">
+    <h3>지식재산 · 수상 경력</h3>
+    <p>실용신안 특허 <strong>28건</strong>, 디자인 특허 <strong>10건</strong><br>디지털 소프트웨어 저작권 다수 (관방 상점 + 매장관리 + '량차이다오지아(良菜到家)' 등)<br>中国十佳品牌展会, UFI·ICCA 인증 등 다수 수상</p>
+  </div>
+  <div class="card card--accent-top fade-up" style="border-top-color:var(--secondary)">
+    <h3>디지털 전환 <span class="zh">(数字化转型)</span></h3>
+    <p>2016년 디지털 R&D센터 설립, 자체 업무·공급망 관리 시스템 자주 개발<br>연간 <strong>1,000만 위안+</strong> R&D 투자<br>SaaS 기반 클라우드: 상류(商流)·물류(货流)·자금류(资金流)·전자문서류(票物流) 통합<br>빅데이터 분석·BI 시스템으로 고객 맞춤 서비스</p>
+  </div>
+</div>
+<div class="innovation-stats fade-up">
+  <div class="innov-stat"><div class="innov-stat-num">28</div><div class="innov-stat-unit">건</div><div class="innov-stat-label">실용신안 특허</div></div>
+  <div class="innov-stat"><div class="innov-stat-num">10</div><div class="innov-stat-unit">건</div><div class="innov-stat-label">디자인 특허</div></div>
+  <div class="innov-stat"><div class="innov-stat-num">1,000만+</div><div class="innov-stat-unit">위안/년</div><div class="innov-stat-label">R&D 투자</div></div>
+  <div class="innov-stat"><div class="innov-stat-num">2016</div><div class="innov-stat-unit">년~</div><div class="innov-stat-label">디지털 R&D센터</div></div>
+</div>
+</div>
+</section>
+
+<div class="container">
+<div class="visual-break fade-up">
+  <div class="visual-break-bg illust-coldchain"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>48시간 전국 배송 · 디지털 콜드체인 물류망</h3>
+    <p>20개 중심 물류센터(中心仓) · 30+ 전방 물류창고(前置仓) · 20만㎡ 콜드체인 · 集速配 OWTE</p>
+  </div>
+</div>
+</div>
+<hr class="divider">
+
+<!-- MEMBERSHIP -->
+<section class="section--tight">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">— Membership</div>
+  <h2 class="section-title">식자재 샹GO회 <span class="zh">(食材享GO会)</span></h2>
+  <p class="section-subtitle">2023년 6월 런칭, 매주 수요일 '식자재 페스티벌 회원의 날(食材节会员日)' 정기 운영</p>
+</div>
+<div class="membership-highlight fade-up">
+  <h3>대규모 할인형 외식 식자재 프로모션 <span class="zh">(钜惠型餐饮食材大促活动)</span></h3>
+  <p style="margin-bottom:14px">위챗 미니프로그램 '량즈룽 관방 상점(良之隆官方商城)'에서 정기 진행. 식자재 공급망 비용의 <strong>투명화(成本透明化)</strong>를 실현하고, 상·하류 파트너와 공급망 효율을 직통(直通)합니다. 상호 이익·신뢰·공생의 공급망 생태계를 구축합니다.</p>
+  <div>
+    <span class="benefit-tag">전 상품 특별 할인(全场大促)</span>
+    <span class="benefit-tag">충전 리워드(充值返利)</span>
+    <span class="benefit-tag">신제품 시식(新品品鉴)</span>
+    <span class="benefit-tag">공식 위챗 라이브(视频号直播)</span>
+  </div>
+</div>
+<div class="grid-2 fade-up">
+  <div class="card">
+    <h3>회원 혜택 구성</h3>
+    <p>매주 수요일 '식자재 페스티벌 회원 데이' 오프라인 행사<br>할인 쿠폰 · 할인가 구매 · 포인트 몰<br>공식몰 할인 · 신제품 출시 · 온라인 커머스 · 충전 리워드<br>외식 전문가와 고객 요구를 반영한 고가성비 식자재 제공</p>
+  </div>
+  <div class="card">
+    <h3>기대 효과</h3>
+    <p>외식 식자재 공급망 비용 구조 투명화<br>공급망 상·하류 파트너 협력 강화<br>고객 재구매 및 충성도 증대<br>상호 이익·신뢰·공생 기반 생태계 구축<br><strong>"공급망 비용 혁명(成本革命)을 끝까지!"</strong></p>
+  </div>
+</div>
+</div>
+</section>
+<div class="spacer-md"></div>
+
+<div class="container" style="padding:24px 0">
+<div class="visual-break fade-up">
+  <div class="visual-break-bg illust-globe"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>세계 식자재의 중식화, 중식 미식의 세계화</h3>
+    <p>34개국 글로벌 네트워크 · 7개 해외 거점 · 글로벌 산업 생태계 구축</p>
+  </div>
+</div>
+</div>
+<hr class="divider">
+
+<!-- 09. PARTNERS -->
+<section class="section section--tight" id="partners">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">09 — Partners</div>
+  <h2 class="section-title">협력 파트너 네트워크</h2>
+  <p class="section-subtitle">원본 PPT의 파트너 슬라이드(일부 협력 브랜드, 미디어 파트너, 전략적 협업 파트너 리스트) 구조를 기준으로 정리했습니다.</p>
+</div>
+<div class="partner-grid fade-up">
+  <div class="partner-card">
+    <h3>전략적 협업 파트너</h3>
+    <p>공급망 상·하류 핵심 기업과의 다자 협업으로 전시, 조달, 물류, 금융이 연결된 공생 생태계를 운영합니다.</p>
+    <div class="partner-chips">
+      <span class="partner-chip">식자재 생산 공장</span>
+      <span class="partner-chip">외식 기업</span>
+      <span class="partner-chip">유통·물류 기업</span>
+      <span class="partner-chip">금융·서비스 기관</span>
+    </div>
+  </div>
+  <div class="partner-card">
+    <h3>협력 브랜드</h3>
+    <p>전국 전시·유통 현장에서 검증된 브랜드와 함께 신제품 확산, 채널 확대, 단품 경쟁력 강화 프로젝트를 공동 추진합니다.</p>
+    <div class="partner-chips">
+      <span class="partner-chip">수산·육류 브랜드</span>
+      <span class="partner-chip">가공식품 브랜드</span>
+      <span class="partner-chip">조미·원재료 브랜드</span>
+      <span class="partner-chip">장비·패키징 브랜드</span>
+    </div>
+  </div>
+  <div class="partner-card">
+    <h3>미디어 파트너</h3>
+    <p>산업 전문 미디어와 협력하여 전시 성과와 시장 트렌드를 확산하고 고객·바이어 연결 효율을 높입니다.</p>
+    <div class="partner-chips">
+      <span class="partner-chip">산업 전문 미디어</span>
+      <span class="partner-chip">전시·박람회 채널</span>
+      <span class="partner-chip">디지털 콘텐츠 채널</span>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<hr class="divider">
+
+<!-- 10. ESG -->
+<section class="section" id="esg">
+<div class="container">
+<div class="section-header fade-up">
+  <div class="section-number">10 — ESG & Social Responsibility</div>
+  <h2 class="section-title">사회적 책임 · 지속가능경영</h2>
+</div>
+<div class="visual-break fade-up" style="margin-bottom:32px;height:300px">
+  <div class="visual-break-bg illust-esg"></div>
+  <div class="visual-break-overlay"></div>
+  <div class="visual-break-content">
+    <h3>동심항역(同心抗疫) — 함께 마음을 모아 위기를 극복</h3>
+    <p>200+ 병원·방역 기관 지원 · 누적 3,200만 위안 물자 기부</p>
+  </div>
+</div>
+<div class="grid-3">
+  <div class="card card--highlight fade-up">
+    <div class="card-icon card-icon--green">🤝</div>
+    <h3>사회적 책임 실천</h3>
+    <p>2020년 코로나19 팬데믹 당시 식자재 자원 긴급 조달, 직원 실시간 대기, 협력 기업과 공동 기부 활동 전개. 창립자 주창량이 직접 구호 물자를 운반하여 일선 항역 인원(一线抗疫人员)에게 안전한 식자재를 안정 공급했습니다.<br><br>'량차이다오지아(良菜到家)' 공동구매 플랫폼을 신속 구축해 지역 주민 생활 물자도 보장했습니다.</p>
+    <div style="margin-top:12px">
+      <span class="esg-stat">200+ 병원·방역 기관</span><br>
+      <span class="esg-stat">3,200만 위안 물자 기부</span><br>
+      <span class="esg-stat">우한시 '방역 보급 우수 기업' 표창</span>
+    </div>
+  </div>
+  <div class="card fade-up">
+    <div class="card-icon card-icon--blue">🌱</div>
+    <h3>녹색 공급망 <span class="zh">(绿色供应链)</span></h3>
+    <p>효율적이고 친환경적인 녹색 공급망 관리 체계를 구축합니다. 물류 네트워크를 최적화하여 탄소 발자국(碳足迹)을 줄이고, 에너지 절감 기술로 자원의 최대화 활용(资源最大化利用)을 실현합니다. 업계 파트너와 포럼·서밋을 개최하여 지속가능한 발전을 함께 실천합니다.</p>
+  </div>
+  <div class="card fade-up">
+    <div class="card-icon card-icon--gold">👥</div>
+    <h3>조직문화 · 인재 <span class="zh">(道德模范评选)</span></h3>
+    <p>직원의 행복감과 소속감이 기업 활력의 원천입니다. 매년 '도덕 모범 직원(道德模范)'을 선발하여 핵심 가치를 실천하는 문화를 운영합니다. 이들은 평범한 자리에서 불평범한 성과(以平凡的身份成就不平凡的事业)를 이루는 량즈룽의 가장 소중한 자산입니다.</p>
+  </div>
+</div>
+</div>
+</section>
+<hr class="divider">
+
+<!-- 11. CONCLUSION -->
+<section class="section">
+<div class="container">
+<div class="conclusion fade-up">
+  <div class="section-number" style="justify-content:center;color:rgba(255,255,255,.5)">11 — Conclusion</div>
+  <div class="spacer-sm"></div>
+  <div class="conclusion-values">
+    <div class="conclusion-value"><span class="conclusion-value-zh">民以食为天</span><span class="conclusion-value-ko">백성에게 먹는 것은 하늘</span></div>
+    <div class="conclusion-value"><span class="conclusion-value-zh">食以安为先</span><span class="conclusion-value-ko">먹거리는 안전이 우선</span></div>
+    <div class="conclusion-value"><span class="conclusion-value-zh">安以良为根</span><span class="conclusion-value-ko">안전의 근본은 '좋음(良)'</span></div>
+  </div>
+  <div class="conclusion-tagline">"三良餐料链天下"<br><span style="font-size:.7em;color:rgba(255,255,255,.7)">삼량의 식자재로, 세상을 연결하다</span></div>
+  <p>
+    량즈룽 그룹의 '良의 길'은 신뢰의 길(诚信之路)이자 혁신의 길(创新之路)이며, 탁월함을 향한 길(卓越之路)입니다.<br>
+    양심(良心) · 양지(良知) · 양행(良行)의 삼량 정신(三良精神)과 展销配金 모델을 기반으로<br>
+    전시 — 유통 — 물류 — 금융을 하나의 체계로 통합하고,<br>
+    중국 내 공급망 경쟁력 강화와 글로벌 시장 확장을 동시에 추진합니다.
+  </p>
+  <p>
+    량즈룽 그룹은 글로벌 시야를 갖춘 중국 기업으로 성장하고 있습니다.<br>
+    공생형 식자재 공급망(共生食材供应链)을 깊이 발전시키며,<br>
+    이 끊임없이 이어지는 '良의 길'을 통해 중국 문화와 식문화를 세계로 전합니다.<br>
+    이는 모든 중국 기업의 책임이며, 우리 역시 당연히 그 책임을 다할 것입니다(责无旁贷).
+  </p>
+  <p style="margin-top:8px">
+    <strong style="color:#6EE7B7">중국 농업과 외식 산업의 공동 번영을 위해, 량즈룽 그룹은 끊임없이 노력합니다.</strong>
+  </p>
+</div>
+</div>
+</section>
+
+<!-- BUYER INVITE CTA -->
+<section class="invite-cta" id="contact">
+<div class="container invite-cta-inner">
+  <h2 class="invite-cta-title">🇰🇷 한국 바이어 여러분을 초대합니다</h2>
+  <p class="invite-cta-desc">
+    중국 식자재 시장의 모든 것을 한 자리에서 만나보세요.<br>
+    참관 문의, 부스 참가, 비즈니스 상담을 신청하실 수 있습니다.
+  </p>
+  <div class="invite-cta-actions">
+    <button type="button" data-tally-open="aQBvlE" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" class="invite-btn invite-btn-primary">📩 참관·참가 문의하기</button>
+    <a class="invite-btn invite-btn-outline" href="https://www.chinascj.com" target="_blank" rel="noopener noreferrer">🌐 공식 웹사이트 방문</a>
+  </div>
+  <div class="invite-cta-contact">
+    <a href="tel:+821077758517">📞 +82-10-7775-8517</a>
+    <a href="mailto:gaoyunfeng@lzl98.com">📧 gaoyunfeng@lzl98.com</a>
+    <a href="https://www.chinascj.com" target="_blank" rel="noopener noreferrer">🌐 www.chinascj.com</a>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container">
+<div class="footer-divider"></div>
+<p>본 페이지는 <strong>2025 良之隆(량즈룽) 그룹 브랜드 핸드북</strong> 기반 회사 소개 랜딩페이지입니다.<br>© LIANGZHILONG GROUP (良之隆集团). All rights reserved.</p>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+function toggleService(header){
+  const d=header.parentElement,b=d.querySelector('.service-detail-body');
+  if(d.classList.contains('open')){d.classList.remove('open');b.style.maxHeight='0px';}
+  else{d.classList.add('open');b.style.maxHeight=b.scrollHeight+'px';}
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.service-detail.open').forEach(d=>{
+    const b=d.querySelector('.service-detail-body');b.style.maxHeight=b.scrollHeight+'px';
+  });
+});
+document.querySelectorAll('.nav-links a').forEach(l=>{
+  l.addEventListener('click',function(e){
+    const h=this.getAttribute('href');
+    if(h.startsWith('#')){e.preventDefault();const t=document.querySelector(h);if(t){const n=document.querySelector('.nav').offsetHeight;window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-n-20,behavior:'smooth'});}}
+  });
+});
+const nav=document.querySelector('.nav');
+window.addEventListener('scroll',()=>{nav.style.boxShadow=window.scrollY>10?'0 4px 20px rgba(0,0,0,.06)':'none';},{passive:true});
+
+document.querySelectorAll('.fade-up,.fade-in,.slide-left,.slide-right').forEach(el=>{el.style.opacity='1';el.style.transform='none';});
+if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.fade-up').forEach(el=>{gsap.fromTo(el,{opacity:0,y:30},{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%',once:true}});});
+  gsap.fromTo('.hero-badge',{opacity:0,y:-10},{opacity:1,y:0,duration:.5,delay:.1});
+  gsap.fromTo('.hero h1',{opacity:0,y:20},{opacity:1,y:0,duration:.6,delay:.15});
+  gsap.fromTo('.hero-desc',{opacity:0,y:20},{opacity:1,y:0,duration:.6,delay:.2});
+  gsap.fromTo('.hero-stat',{opacity:0,y:20},{opacity:1,y:0,duration:.5,stagger:.1,ease:'power2.out',delay:.3});
+  [
+    ['.kpi-card','.kpi-grid',.08],
+    ['.tl-card','.timeline-compact',.05],
+    ['.mvv-card','.mvv-grid',.1],
+    ['.flow-step','.flow-model',.08],
+    ['.chain-node,.chain-arrow','.chain-flow',.06],
+    ['.service-mini','.services-overview',.06],
+    ['.strategy-card','.strategy-card',.1],
+    ['.innov-stat','.innovation-stats',.08]
+  ].forEach(([sel,trig,stg])=>{
+    if(document.querySelector(sel)){
+      gsap.fromTo(sel,{opacity:0,y:20},{opacity:1,y:0,duration:.45,stagger:stg,ease:'power2.out',scrollTrigger:{trigger:trig,start:'top 88%',once:true}});
+    }
+  });
+}else{
+  document.querySelectorAll('.fade-up,.fade-in').forEach(el=>{el.style.opacity='1';el.style.transform='none';});
+}
+</script>
+</body>
+</html>

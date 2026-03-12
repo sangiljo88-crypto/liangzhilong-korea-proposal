@@ -33,8 +33,8 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit}
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.88);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;color:var(--primary);letter-spacing:-.02em;white-space:nowrap}
-.nav-logo .logo-icon{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:900}
+.nav-logo{display:flex;align-items:center;color:var(--primary);white-space:nowrap}
+.nav-logo img{height:36px;width:auto;display:block}
 .nav-links{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
 .nav-links a{font-size:13px;font-weight:600;color:var(--text-secondary);padding:8px 14px;border-radius:99px;transition:all .2s;white-space:nowrap}
 .nav-links a:hover{background:var(--primary-light);color:var(--primary)}
@@ -323,7 +323,9 @@ margin-top:44px;
 <!-- NAV -->
 <nav class="nav">
 <div class="container nav-inner">
-<a href="#top" class="nav-logo"><div class="logo-icon">良</div>량즈룽 그룹</a>
+<a href="#top" class="nav-logo" aria-label="량즈룽 그룹 홈">
+  <img src="량즈룽 로고.png" alt="량즈룽 그룹 로고">
+</a>
 <div class="nav-links">
 <a href="#overview">기업 개요</a>
 <a href="#history">발전 과정</a>
